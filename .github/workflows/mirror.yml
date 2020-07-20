@@ -16,6 +16,7 @@ jobs:
           echo "${GIT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           git remote add mirror "${REMOTE}"
+          git remote show mirror
           git push --tags --force --prune mirror 'refs/remotes/origin/*:refs/heads/*'
       env:
         REMOTE: "git@gitlab.com:cscs-ci/ci-testing/mirror.git"
