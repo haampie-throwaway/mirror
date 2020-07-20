@@ -14,6 +14,7 @@ jobs:
       run: |
           mkdir ~/.ssh
           echo "${GIT_SSH_PRIVATE_KEY}" > id_rsa
+          echo "${REMOTE}"
           chmod 600 id_rsa
           export GIT_SSH_COMMAND='ssh -i ./id_rsa -o IdentitiesOnly=yes'
           git remote add mirror "${REMOTE}"
