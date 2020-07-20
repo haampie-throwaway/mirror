@@ -17,6 +17,7 @@ jobs:
           echo "${REMOTE}"
           chmod 600 id_rsa
           export GIT_SSH_COMMAND='ssh -i ./id_rsa -o IdentitiesOnly=yes'
+          git --version
           git remote add mirror "${REMOTE}"
           git remote show mirror
           git push --tags --force --prune mirror 'refs/remotes/origin/*:refs/heads/*'
