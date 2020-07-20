@@ -15,7 +15,8 @@ jobs:
           mkdir ~/.ssh && \
           echo "${GIT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa && \
           chmod 600 ~/.ssh/id_rsa && \
-          ssh -v -i ~/.ssh/id_rsa -T git@gitlab.com
+          #ssh -v -i ~/.ssh/id_rsa -T git@gitlab.com
+          ls ~/.ssh/id_rsa
           #export GIT_SSH_COMMAND='ssh -i ./id_rsa -o IdentitiesOnly=yes'
           #git remote add mirror "${REMOTE}"
           #git remote show mirror
