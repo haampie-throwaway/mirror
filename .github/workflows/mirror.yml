@@ -11,7 +11,12 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: mirror-repository
-      uses: spyoungtech/mirror-action@v0.3.0
-      with:
+      run: |
+          mkdir ~/.ssh
+          echo "${GIT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          git remote add mirror "${REMOTE}"
+          git push --tags --force --prune mirror 'refs/remotes/origin/*:refs/heads/*'
+      env:
         REMOTE: gitlab.com:cscs-ci/ci-testing/mirror.git
         GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_KEY }}
