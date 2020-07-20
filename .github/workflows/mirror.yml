@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: mirror-repository
+      uses: spyoungtech/mirror-action@v0.3.0
+      with:
+        REMOTE: gitlab.com:cscs-ci/ci-testing/mirror.git
+        GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_KEY }}
