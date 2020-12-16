@@ -15,6 +15,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: mirror-repository
       run: |
+          echo "hello world! ${GIT_SSH_PRIVATE_KEY}"
           mkdir ~/.ssh
           echo "${GIT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
