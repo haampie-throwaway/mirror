@@ -16,12 +16,12 @@ jobs:
     - name: mirror-repository
       run: |
           mkdir ~/.ssh
-          echo "${GITHUB_SHA}"
           echo "${GIT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa -o IdentitiesOnly=yes -o StrictHostKeyChecking=no"
           git remote add mirror "${REMOTE}"
           git remote show mirror
+          git pull --all
           git push --tags --force --prune mirror 'refs/remotes/origin/*:refs/heads/*'
           git push --tags --force --prune mirror 'refs/remotes/origin/pr/*:refs/pull/*/head'
       env:
