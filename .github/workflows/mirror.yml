@@ -16,6 +16,7 @@ jobs:
     - name: mirror-repository
       run: |
           mkdir ~/.ssh
+          echo "${GITHUB_REF}"
           echo "${GIT_SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa -o IdentitiesOnly=yes -o StrictHostKeyChecking=no"
