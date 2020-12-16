@@ -21,7 +21,8 @@ jobs:
           export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa -o IdentitiesOnly=yes -o StrictHostKeyChecking=no"
           git remote add mirror "${REMOTE}"
           git remote show mirror
-          git pull --all
+          git config --add remote.origin.fetch +refs/pull/*/head:refs/remotes/origin/pr
+          git fetch origin
           git push --tags --force --prune mirror 'refs/remotes/origin/*:refs/heads/*'
           git push --tags --force --prune mirror 'refs/remotes/origin/pr/*:refs/pull/*/head'
       env:
